@@ -1,0 +1,8 @@
+*/*.class
+*/*.class
+*/*.exe
+
+.vscode/
+
+*/*.swp
+*/*.swo
