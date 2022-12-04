@@ -6,7 +6,7 @@ public class CalorieCounting {
     public static void main(String[] args) {
 
         try {
-            File file = new File("input.txt");
+            File file = new File("input");
             Scanner sc1 = new Scanner(file);
             Scanner sc2 = new Scanner(file);
 

@@ -9,15 +9,13 @@ public class RockPaperScissors {
         try {
             File file = new File("input");
             Scanner sc1 = new Scanner(file);
-            Scanner sc2 = new Scanner(file);
 
-            int answer1 = strategyScore(file, sc1);
-            int answer2;
+            int[] answer = strategyScore(file, sc1);
+
             
-            System.out.println(answer1);
-            //System.out.println(answer2);
+            System.out.println(answer[0]);
+            System.out.println(answer[1]);
             sc1.close();
-            sc2.close();
         }
 
         catch (FileNotFoundException e) {
@@ -28,21 +26,21 @@ public class RockPaperScissors {
     
     }
     
-    //part1
-    public static int strategyScore(File file, Scanner sc){
-        int finalScore = 0;
+    public static int[] strategyScore(File file, Scanner sc){
+        int[] finalScores = new int[2];
 
         while (sc.hasNextLine()) {
             String data = sc.nextLine();
-            finalScore += roundScore(data.charAt(0), data.charAt(2));
+            finalScores[0] += roundScore1(data.charAt(0), data.charAt(2));
+            finalScores[1] += roundScore2(data.charAt(0), data.charAt(2));
         }
         
-        return finalScore;
+        return finalScores;
     }
         
     
 
-    public static int roundScore(char other, char you) {
+    public static int roundScore1(char other, char you) {
         int roundScore = 0;
 
         if (you == 'X') {
@@ -65,5 +63,26 @@ public class RockPaperScissors {
 
     }
 
+    public static int roundScore2 (char other, char result) {
+        int roundScore = 0;
+
+        if (result == 'X') {
+            if (other == 'A') roundScore += 3;
+            else if (other == 'B') roundScore += 1;
+            else roundScore += 2;
+        }
+        else if (result == 'Y') {
+            if (other == 'A') roundScore += 4;
+            else if (other == 'B') roundScore += 5;
+            else roundScore += 6;
+        }
+        else if (result == 'Z') {
+            if (other == 'A') roundScore += 8;
+            else if (other == 'B') roundScore += 9;
+            else roundScore+= 7;
+        }
+
+        return roundScore;
+    }
 
 }
